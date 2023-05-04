@@ -1,7 +1,4 @@
 import axios from 'axios';
-import microCors from 'micro-cors';
-
-const cors = microCors();
 
 async function handler(req, res) {
   const { weatherData } = req.body;
@@ -34,4 +31,4 @@ async function handler(req, res) {
   }
 }
 
-export default cors(handler);
+export default handler;

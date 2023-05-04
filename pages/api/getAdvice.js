@@ -1,7 +1,11 @@
 import axios from 'axios';
 import microCors from 'micro-cors';
 
-const cors = microCors();
+const cors = microCors({
+  allowMethods: ['POST'],
+  allowHeaders: ['Content-Type'],
+  origin: 'http://localhost:3000',
+});
 
 async function handler(req, res) {
   const { weatherData } = req.body;

@@ -1,6 +1,9 @@
 import axios from 'axios';
+import microCors from 'micro-cors';
 
-export default async function handler(req, res) {
+const cors = microCors();
+
+async function handler(req, res) {
   const { weatherData } = req.body;
 
   if (weatherData) {
@@ -30,3 +33,5 @@ export default async function handler(req, res) {
     res.status(400).json({ message: 'Invalid request data' });
   }
 }
+
+export default cors(handler);

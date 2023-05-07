@@ -1,5 +1,6 @@
 import axios from 'axios';
 import microCors from 'micro-cors';
+// TODO: microCors disables cors in development, but production mode removes the need for the cors package
 
 const cors = microCors({
   allowMethods: ['POST'],

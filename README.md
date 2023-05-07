@@ -1,3 +1,8 @@
+### Serverless Function in Support of WeatherWatch Weather Advice Microservice
+
+Note that the `microCors` library disables cors in development due to OpenAI API security requirements, but **production mode will require the removal of the `microcors` package**
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

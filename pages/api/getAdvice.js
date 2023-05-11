@@ -11,6 +11,7 @@ async function handler(req, res) {
 
   if (weatherData) {
     const prompt = `In the voice of Willard Scott without saying so, and based on last update at ${weatherData.location.localtime} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, sunglasses, and/or an umbrella?`;
+    console.log('🚀 ~ file: getAdvice.js:15 ~ handler ~ prompt:', prompt);
     try {
       const { data } = await openai.createCompletion({
         model: 'text-davinci-003',
@@ -20,7 +21,7 @@ async function handler(req, res) {
         top_p: 1,
         frequency_penalty: 0,
         presence_penalty: 0.6,
-        stop: ['\\n'],
+        stop: '\\n',
       });
       const advice = data.choices[0].text.trim();
       res.status(200).json({ advice });

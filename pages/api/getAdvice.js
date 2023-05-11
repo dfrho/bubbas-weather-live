@@ -1,37 +1,28 @@
-import axios from 'axios';
-import microCors from 'micro-cors';
-// TODO: microCors disables cors in development, but production mode removes the need for the cors package
+import { Configuration, OpenAIApi } from 'openai';
 
-const cors = microCors({
-  allowMethods: ['POST', 'OPTIONS'], // Add OPTIONS to the array
-  allowHeaders: ['Content-Type'],
+const OPEN_AI_API_KEY = process.env.OPENAI_APIKEY;
+const configuration = new Configuration({
+  apiKey: OPEN_AI_API_KEY,
 });
+const openai = new OpenAIApi(configuration);
 
 async function handler(req, res) {
   const { weatherData } = req.body;
 
   if (weatherData) {
+    const prompt = `In the voice of Willard Scott without saying so, and based on last update at ${weatherData.location.localtime} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, sunglasses, and/or an umbrella?`;
     try {
-      const openaiResponse = await axios.post(
-        'https://https://openai-weather.vercel.app/api/advice',
-        {
-          prompt: `In the voice of Willard Scott without saying so, and based on last update at ${weatherData.location.localtime} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, sunglasses, and/or an umbrella?`,
-          stop: ['\\n'],
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      const advice = openaiResponse.data.choices[0].text.trim();
-      res.setHeader(
-        'Access-Control-Allow-Methods',
-        'GET, PUT, POST, DELETE, OPTIONS'
-      );
-      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
+      const { data } = await openai.createCompletion({
+        model: 'text-davinci-003',
+        prompt,
+        temperature: 0.9,
+        max_tokens: 50,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0.6,
+        stop: ['\\n'],
+      });
+      const advice = data.choices[0].text.trim();
       res.status(200).json({ advice });
     } catch (error) {
       console.error(error);
@@ -44,4 +35,4 @@ async function handler(req, res) {
   }
 }
 
-export default cors(handler);
+export default handler;

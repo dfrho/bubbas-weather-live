@@ -5,7 +5,6 @@ import microCors from 'micro-cors';
 const cors = microCors({
   allowMethods: ['POST', 'OPTIONS'], // Add OPTIONS to the array
   allowHeaders: ['Content-Type'],
-  origin: 'http://localhost:3000',
 });
 
 async function handler(req, res) {

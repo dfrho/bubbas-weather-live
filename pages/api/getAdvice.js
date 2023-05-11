@@ -1,4 +1,12 @@
 import axios from 'axios';
+import microCors from 'micro-cors';
+// TODO: microCors disables cors in development, but production mode removes the need for the cors package
+
+const cors = microCors({
+  allowMethods: ['POST', 'OPTIONS'], // Add OPTIONS to the array
+  allowHeaders: ['Content-Type'],
+  origin: 'http://localhost:3000',
+});
 
 async function handler(req, res) {
   const { weatherData } = req.body;
@@ -19,6 +27,11 @@ async function handler(req, res) {
       );
 
       const advice = openaiResponse.data.choices[0].text.trim();
+      res.setHeader(
+        'Access-Control-Allow-Methods',
+        'GET, PUT, POST, DELETE, OPTIONS'
+      );
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
       res.status(200).json({ advice });
     } catch (error) {
@@ -32,4 +45,4 @@ async function handler(req, res) {
   }
 }
 
-export default handler;
+export default cors(handler);

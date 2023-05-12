@@ -4,13 +4,14 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_APIKEY,
 });
 const openai = new OpenAIApi(configuration);
-
-function addPeriod(str) {
-  if (str[str.length - 1] !== '.') {
-    return str + '.';
-  } else {
-    return str;
+// only add a period if the last character is not punctuation
+function addPeriod(text) {
+  const punctuation = ['.', '!'];
+  const lastCharacter = text[text.length - 1];
+  if (!punctuation.includes(lastCharacter)) {
+    return `${text}.`;
   }
+  return text;
 }
 
 async function handler(req, res) {

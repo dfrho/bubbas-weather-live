@@ -1,39 +1,16 @@
-### Serverless Function in Support of WeatherWatch Weather Advice Microservice
+## React App `index.js`
 
-Note that the `microCors` library disables cors in development due to OpenAI API security requirements, but **production mode will require the removal of the `microcors` package**
+The `index.js` file in this React app serves as the main entry point for the WeatherTable component, which provides weather data and packing advice based on the fetched data.
 
+### User Interface (UI)
+The UI is built using React and styled with CSS modules. It displays weather information and provides a responsive and user-friendly experience. The weather details include cloud coverage, temperature, humidity, wind speed, and more. When advice is available, a modal is triggered by clicking the weather icon, showing the packing advice in a bordered section based on current weather.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### APIs
+The app interacts with two APIs to retrieve weather data and generate packing advice. It utilizes the `axios` library to make HTTP requests. The first API is used to obtain the user's IP address, while the second API fetches the weather data based on the IP address. Additionally, another API endpoint is responsible for generating advice by analyzing the weather conditions. The app handles error cases and provides appropriate messages to the user.
 
-## Getting Started
+### Usage as a Microservice
+This app can be used as a standalone microservice by integrating it into other projects. The WeatherTable component can be easily imported and utilized in different applications, allowing developers to display weather information and provide packing advice without having to build this functionality from scratch. It provides a reusable and modular solution.
 
-First, run the development server:
+To see the app in action, you can visit the [deployed version](https://weather-packing-advice.vercel.app/) here. Please note that **the packing advice takes a moment to appear**, whose arrive is indicated by the border around the weather icon. This delay is due to the asynchronous nature of the advice generation process and slower nature of AI generation.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore the app, interact with the weather data, and check out the packing advice functionality.

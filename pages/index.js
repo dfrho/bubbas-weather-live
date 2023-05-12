@@ -15,10 +15,6 @@ const WeatherTable = () => {
         const weatherResponse = await axios.get(
           `/api/getWeatherData?ipAddress=${ipAddress}`
         );
-        console.log(
-          '🚀 ~ file: index.js:22 ~ fetchData ~ weatherResponse.data:',
-          weatherResponse.data
-        );
         setWeatherData(weatherResponse.data);
       } catch (error) {
         console.error(error);

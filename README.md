@@ -1,4 +1,4 @@
-## React App `index.js`
+## Main Component: `WeatherTable.js`
 
 The `index.js` file in this React app serves as the main entry point for the WeatherTable component, which provides weather data and packing advice based on the fetched data.
 

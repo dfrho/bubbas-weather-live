@@ -18,13 +18,13 @@ async function handler(req, res) {
   const { weatherData } = req.body;
 
   if (weatherData) {
-    const prompt = `In the voice of Willard Scott without saying so, and based on current time as ${weatherData.location.localtime} and current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation for the day is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user should pack when going outside, as in outerwear, and/or an umbrella?`;
+    const prompt = `In the voice of Willard Scott without saying so, and presence based on current time as ${weatherData.location.localtime} and current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation for the day is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user should pack when going outside, as in outerwear, and/or an umbrella?`;
     try {
       const { data } = await openai.createCompletion({
         model: 'text-davinci-003',
         prompt,
         temperature: 0.7, // Adjust based on desired randomness vs. coherence
-        max_tokens: 100, // Adjust based on desired response length
+        max_tokens: 35, // Adjust based on desired response length
         top_p: 1,
         frequency_penalty: 0.2, // Fine-tune to control repetitiveness
         presence_penalty: 0.6, // Fine-tune to encourage relevant responses

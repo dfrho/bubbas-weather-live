@@ -125,7 +125,7 @@ const WeatherTable = () => {
                   X
                 </button>
                 <div>
-                  <h3>Advice on How to Pack Today</h3>
+                  <h3>How to Pack</h3>
                   <p>{advice}</p>
                 </div>
               </div>

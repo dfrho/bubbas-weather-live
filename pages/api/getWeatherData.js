@@ -2,10 +2,6 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   const { ipAddress } = req.query;
-  console.log(
-    '🚀 ~ file: getWeatherData.js:5 ~ handler ~ ipAddress:',
-    ipAddress
-  );
 
   try {
     const response = await axios.get(

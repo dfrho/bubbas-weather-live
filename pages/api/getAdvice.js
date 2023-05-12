@@ -24,7 +24,7 @@ async function handler(req, res) {
         model: 'text-davinci-003',
         prompt,
         temperature: 0.7, // Adjust based on desired randomness vs. coherence
-        max_tokens: 35, // Adjust based on desired response length
+        max_tokens: 100, // Adjust based on desired response length
         top_p: 1,
         frequency_penalty: 0.2, // Fine-tune to control repetitiveness
         presence_penalty: 0.6, // Fine-tune to encourage relevant responses

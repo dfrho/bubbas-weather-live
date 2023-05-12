@@ -84,7 +84,9 @@ const WeatherTable = () => {
               </h3>
               {advice ? (
                 <>
-                  <Tooltip id="my-tooltip" place="top" effect="solid" />
+                  {!isModalOpen && (
+                    <Tooltip id="my-tooltip" place="top" effect="solid" />
+                  )}
                   <button
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="AI advice on what to pack"

@@ -9,7 +9,7 @@ async function handler(req, res) {
   const { weatherData } = req.body;
 
   if (weatherData) {
-    const prompt = `In the voice of Willard Scott without saying so, and based on current time as ${weatherData.current.location.localtime} and current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, sunglasses, and/or an umbrella? Don't suggest sunglasses if after 5pm.`;
+    const prompt = `In the voice of Willard Scott without saying so, and based on current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, sunglasses, and/or an umbrella?`;
     try {
       const { data } = await openai.createCompletion({
         model: 'text-davinci-003',

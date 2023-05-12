@@ -5,11 +5,19 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+function addPeriod(str) {
+  if (str[str.length - 1] !== '.') {
+    return str + '.';
+  } else {
+    return str;
+  }
+}
+
 async function handler(req, res) {
   const { weatherData } = req.body;
 
   if (weatherData) {
-    const prompt = `In the voice of Willard Scott without saying so, and based on current time as ${weatherData.location.localtime} and current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user looking at your response in a pop up window, should pack for the day, as in outerwear, and/or an umbrella?`;
+    const prompt = `In the voice of Willard Scott without saying so, and based on current time as ${weatherData.location.localtime} and current weather described as ${weatherData.current.condition.text} and weather conditions consisting of Cloud Coverage is ${weatherData.current.cloud}% and Temperature is ${weatherData.current.temp_f}F and Humidity is ${weatherData.current.humidity}% and Precipitation today is ${weatherData.current.precip_in} inches and Current Wind Speed is ${weatherData.current.wind_mph} mph and Winds are Gusting at ${weatherData.current.gust_mph} mph, any advice on what a web user should pack for the day, as in outerwear, and/or an umbrella?`;
     try {
       const { data } = await openai.createCompletion({
         model: 'text-davinci-003',
@@ -21,7 +29,7 @@ async function handler(req, res) {
         presence_penalty: 0.6,
         stop: '\\n',
       });
-      const advice = data.choices[0].text;
+      const advice = addPeriod(data.choices[0].text);
       res.status(200).json({ advice });
     } catch (error) {
       console.error(error);

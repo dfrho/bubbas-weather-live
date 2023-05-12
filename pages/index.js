@@ -35,7 +35,7 @@ const WeatherTable = () => {
     const getAdvice = async () => {
       if (weatherData !== null) {
         try {
-          const response = await axios.get(
+          const response = await axios.post(
             '/api/getAdvice',
             { weatherData },
             {

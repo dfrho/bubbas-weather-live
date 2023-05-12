@@ -21,8 +21,7 @@ async function handler(req, res) {
         presence_penalty: 0.6,
         stop: '\\n',
       });
-      console.log('🚀 ~ file: getAdvice.js:24 ~ handler ~ data:', data);
-      const advice = data.choices[0].text.trim();
+      const advice = data.choices[0].text;
       res.status(200).json({ advice });
     } catch (error) {
       console.error(error);

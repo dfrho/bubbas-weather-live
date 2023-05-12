@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import styles from './index.module.css';
+import 'react-tooltip/dist/react-tooltip.css';
 
 const WeatherTable = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -83,9 +84,10 @@ const WeatherTable = () => {
               </h3>
               {advice ? (
                 <>
-                  <ReactTooltip place="top" effect="solid" />
+                  <Tooltip id="my-tooltip" place="top" effect="solid" />
                   <button
-                    data-tip="AI advice on what to pack"
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content="AI advice on what to pack"
                     onClick={() => setIsModalOpen(true)}
                     className={`${styles['weather-button']} ${
                       advice && 'advice-available'

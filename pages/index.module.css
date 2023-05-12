@@ -210,9 +210,10 @@
 .modal-advice {
   position: relative;
   background-color: #fff;
-  width: 30vw;
-  max-height: 300px;
-  padding: 40px;
+  width: 90%; /* Adjust the width to fit the screen */
+  max-width: 400px; /* Set a maximum width */
+  margin: 0 auto; /* Center the modal horizontally */
+  padding: 20px; /* Reduce the padding for smaller screens */
   border-radius: 10px;
   box-shadow: #000 0px 0px 10px;
 }

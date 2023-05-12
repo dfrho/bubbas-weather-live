@@ -1,6 +1,6 @@
-## Main Component: `WeatherTable.js`
+## Main Component: `WeatherTable`
 
-The `index.js` file in this React app serves as the main entry point for the WeatherTable component, which provides weather data and packing advice based on the fetched data.
+The `index.js` file in this React app serves as the main entry point for the **WeatherTable** component, which provides weather data and packing advice based on the fetched data.
 
 ### User Interface (UI)
 The UI is built using React and styled with CSS modules. It displays weather information and provides a responsive and user-friendly experience. The weather details include cloud coverage, temperature, humidity, wind speed, and more. When advice is available, a modal is triggered by clicking the weather icon, showing the packing advice in a bordered section based on current weather.

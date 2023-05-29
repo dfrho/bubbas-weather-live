@@ -31,6 +31,7 @@ async function handler(req, res) {
         stop: '\\n',
       });
       const advice = data.choices[0].text.trim();
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.status(200).json({ advice });
     } catch (error) {
       console.error(error);

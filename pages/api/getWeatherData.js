@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     const response = await axios.get(
       `https://api.weatherapi.com/v1/current.json?key=${process.env.WEATHERAPI_APIKEY}&q=${ipAddress}`
     );
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     res.status(200).json(response.data);
   } catch (error) {
